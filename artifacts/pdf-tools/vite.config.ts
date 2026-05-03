@@ -2,6 +2,9 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import path from "path";
+import { fileURLToPath } from "url";
+
+const __dirname = fileURLToPath(new URL(".", import.meta.url));
 
 const isReplit = process.env.REPL_ID !== undefined;
 const isProduction = process.env.NODE_ENV === "production";
@@ -17,7 +20,7 @@ const replitPlugins =
         (await import("@replit/vite-plugin-runtime-error-modal")).default(),
         await import("@replit/vite-plugin-cartographer").then((m) =>
           m.cartographer({
-            root: path.resolve(import.meta.dirname, ".."),
+            root: path.resolve(__dirname, ".."),
           }),
         ),
         await import("@replit/vite-plugin-dev-banner").then((m) =>
@@ -31,15 +34,15 @@ export default defineConfig({
   plugins: [react(), tailwindcss(), ...replitPlugins],
   resolve: {
     alias: {
-      "@": path.resolve(import.meta.dirname, "src"),
-      "@assets": path.resolve(import.meta.dirname, "..", "..", "attached_assets"),
+      "@": path.resolve(__dirname, "src"),
+      "@assets": path.resolve(__dirname, "..", "..", "attached_assets"),
     },
     dedupe: ["react", "react-dom"],
   },
-  root: path.resolve(import.meta.dirname),
+  root: path.resolve(__dirname),
   build: {
     outDir: path.resolve(
-      import.meta.dirname,
+      __dirname,
       process.env.IS_VERCEL ? "dist" : "dist/public",
     ),
     emptyOutDir: true,
