@@ -1,10 +1,7 @@
 {
-  "buildCommand": "pnpm --filter @workspace/pdf-tools run build",
+  "buildCommand": "IS_VERCEL=1 pnpm --filter @workspace/pdf-tools run build",
   "outputDirectory": "artifacts/pdf-tools/dist",
   "installCommand": "pnpm install --no-frozen-lockfile",
-  "env": {
-    "IS_VERCEL": "1"
-  },
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
   ],
