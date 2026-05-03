@@ -1,6 +1,6 @@
 {
   "buildCommand": "pnpm --filter @workspace/pdf-tools run build",
-  "outputDirectory": "artifacts/pdf-tools/dist/public",
+  "outputDirectory": "artifacts/pdf-tools/dist",
   "installCommand": "pnpm install --no-frozen-lockfile",
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
