@@ -40,7 +40,7 @@ export default defineConfig({
   build: {
     outDir: path.resolve(
       import.meta.dirname,
-      process.env.VERCEL ? "dist" : "dist/public",
+      process.env.IS_VERCEL ? "dist" : "dist/public",
     ),
     emptyOutDir: true,
   },
